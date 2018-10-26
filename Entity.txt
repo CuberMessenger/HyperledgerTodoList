@@ -1,0 +1,6 @@
+Participants:
+    User
+    //Manager
+
+Assets:
+    Task

@@ -1,0 +1,16 @@
+namespace com.smie.todolist
+
+participant User identified by uid {
+    o String uid
+    o String username
+    o String password
+}
+
+asset Task identified by tid {
+    o String tid
+    o String title
+    o String todo
+    o DateTime start
+    o DateTime ddl
+    --> User owner
+}
