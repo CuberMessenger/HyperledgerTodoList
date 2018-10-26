@@ -8,11 +8,3 @@ rule Default {
     resource: "com.smie.todolist.*"
     action: ALLOW
 }
-
-rule SystemACL {
-  description:  "System ACL to permit all access"
-  participant: "ANY"
-  operation: ALL
-  resource: "com.smie.todolist.system.**"
-  action: ALLOW
-}
