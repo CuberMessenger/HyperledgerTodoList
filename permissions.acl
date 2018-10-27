@@ -1,6 +1,3 @@
-/**
- * Access control rules for tutorial-network
- */
 rule Default {
     description: "Allow all participants access to all resources"
     participant: "ANY"
