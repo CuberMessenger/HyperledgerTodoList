@@ -1,16 +1,17 @@
-async function addTask(newTask) {
-    let connection = new BusinessNetworkConneciton();
-    await connection.connect('admin@todolist-network');
+/**
+ * Receive a task
+ * @param {com.smie.task.Receive} receiveTask
+ * @transaction
+ */
+async function receiveTask(receive) {
+    receive.task.owner = receive.receiver;
 
-    let assetRegistry = connection.getAssetRegistry('com.smie.todolist');
-    let factory = connection.getFactory();
-    let task = factory.newResource('com.smie.todolist', 'Task', newTask.tid);
-    task.title = newTask.title;
-    task.todo = newTask.todo;
-    task.start = newTask.start;
-    task.ddl = newTask.ddl;
-    task.owner = newTask.owner;
+    const registry = await getAssetRegistry('com.smie.task.Task');
+    await registry.update(receive.task);
 
-    await assetRegistry.add(task);
-    await connection.disconnect();
+    // Emit an event for the modified asset.
+    let event = getFactory().newEvent('com.smie.task', 'ReceiveEvent');
+    event.task = receive.task;
+    event.receiver = receive.receiver;
+    emit(event);
 }
