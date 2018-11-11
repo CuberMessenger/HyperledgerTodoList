@@ -25,7 +25,7 @@ async function finishTask(finish) {
     finish.task.isFinish = true;
 
     const registry = await getAssetRegistry('com.smie.task.Task');
-    await registry.update(receive.task);
+    await registry.update(finish.task);
 
     // Emit an event for the modified asset.
     let event = getFactory().newEvent('com.smie.task', 'FinishEvent');
