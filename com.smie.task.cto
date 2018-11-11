@@ -40,3 +40,13 @@ event ReceiveEvent {
   --> Worker receiver
   --> Task task
 }
+
+transaction Finish {
+  --> Worker worker
+  --> Task task
+}
+
+event FinishEvent {
+  --> Worker worker
+  --> Task task
+}
